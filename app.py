@@ -32,19 +32,20 @@ if app_mode == "Run Prediction":
             joblib.dump(data_to_predict, "artifacts/newdata.pickle")
             st.info("You may proceed!")
         
-        uploaded_model = st.file_uploader(label="2) Select the model you want to use for classification or you can skip this step and proceed to the next one (it will use the first trained model)") 
+        uploaded_model = st.file_uploader(label="2) Select the model you want to use for classification (artifacts folder)") 
         if uploaded_model is not None:
-            if st.button("Click to confirm the chosen model"):
-                model = joblib.load(uploaded_model)
-                st.info("Ready!")
-            else:
-                model = None
+            with st.spinner('Aguarde um pouco...'):
+                if st.button("Click to confirm the chosen model"):
+                    model = joblib.load(uploaded_model)
+                    st.info("Ready!")
+                else:
+                    model = None
 
             # Run prediction
             submit = st.button('Run the classifier!')
             if submit:
                 data_to_predict = joblib.load("artifacts/newdata.pickle")
-                st.write(data_to_predict)
+                
                 with st.spinner('Wait for it...'):
                     st.subheader('The predicted class is:')
                     prediction = predict_label(data_to_predict, OUTPUT_FOLDER, MODEL=model)
@@ -75,11 +76,11 @@ else: #app_mode == "Insert New Data":
             if sel_file_type == 'json':
                 new_data = pd.read_json(uploaded_file)
                 joblib.dump(new_data, "artifacts/newdata.pickle")
-                st.write(new_data)
+                
             elif sel_file_type == 'csv':
                 new_data = pd.read_csv(uploaded_file)
                 joblib.dump(new_data, "artifacts/newdata.pickle")
-                st.write(new_data)
+                
             st.success('Submission successful!')
             new_data.to_csv('artifacts/training_upd.csv', mode='a', header=False, index=None, sep=";")
 
