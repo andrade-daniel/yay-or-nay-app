@@ -47,10 +47,8 @@ if __name__ == '__main__':
     file_path = args.file_path
     file_type = args.file_type
     model= args.model
-    
-    # args = parser.parse_args()
 
-    # Train, retrain or predict, according to the command
+    # Train, retrain or predict, according to the commands
 
     # To train the model
     if train == True:
