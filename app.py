@@ -33,8 +33,8 @@ if app_mode == "Run prediction":
             st.info("You may proceed!")
         
         uploaded_model = st.file_uploader(label="2) Select the model you want to use for classification (artifacts folder)") 
-        if uploaded_model is not None:
-            with st.spinner('Aguarde um pouco...'):
+        with st.spinner('Wait for it...'):    
+            if uploaded_model is not None:
                 if st.button("Click to confirm the chosen model"):
                     model = joblib.load(uploaded_model)
                     st.info("Ready!")
