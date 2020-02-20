@@ -13,9 +13,9 @@ st.title('YES or NO app')
 
 st.sidebar.subheader("What to to?")
 
-app_mode = st.sidebar.radio(label="", options=["Run Prediction", "Submit new labeled data"])
+app_mode = st.sidebar.radio(label="", options=["Run prediction", "Submit new labeled data"])
 
-if app_mode == "Run Prediction":
+if app_mode == "Run prediction":
 
     uploaded_file = st.file_uploader(label="1) Select the file with the new observation (json, csv)")
     file_types = ['json', 'csv']
@@ -23,7 +23,7 @@ if app_mode == "Run Prediction":
         index=0)
 
     if uploaded_file is not None:
-        if st.button("Click to confirm"):
+        if st.button("Confirm the file format"):
             if sel_file_type == 'json':
                 data_to_predict = pd.read_json(uploaded_file)
                 
@@ -56,16 +56,16 @@ if app_mode == "Run Prediction":
                         st.subheader(prediction)
                         st.success('Done!')
 
-    click = st.button("Click here when it's done")
-    if click:
-        with st.spinner('Wait for it...'):
-            img_future = Image.open(OUTPUT_FOLDER + '/see-you-in-the-future.png')
-            st.image(img_future,
-            use_column_width=False, width=600)
+        click = st.button("Click here when it's done")
+        if click:
+            with st.spinner('Wait for it...'):
+                img_future = Image.open(OUTPUT_FOLDER + '/see-you-in-the-future.png')
+                st.image(img_future,
+                use_column_width=False, width=600)
             
-else: #app_mode == "Insert New Data":
+else: #app_mode == "Submit new labeled data":
    
-    uploaded_file = st.file_uploader(label="")
+    uploaded_file = st.file_uploader(label="1) Select the file with the new observation (json, csv)")
 
     file_types = ['json', 'csv']
     sel_file_type = st.selectbox(label="Select the file format", options=file_types, \
