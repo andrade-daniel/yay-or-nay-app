@@ -1,4 +1,4 @@
-# Machine Learning + Microservice CLI & Deployed App in Heroku (with some analysis over Jupyter Notebook)
+# Machine Learning + Deployed App in Heroku (with some analysis over Jupyter Notebook)
 
 ## Goal
 
@@ -6,7 +6,7 @@ It is a simple binary classification exercise, where the goal is to:
 
 1. Create and train a machine learning model using the training set that performs well on the validation set.
 
-2. To create a microservice that will serve predictions of that model.
+2. To create a microservice or equivalent that will serve predictions of that model.
 
 3. To build it so that it learns online (meaning it accepts labeled data one by one and gradually improves the predictions) using the given dataset as initial "starter".
 
@@ -85,3 +85,13 @@ Every time you (re)train a new model, it will be saved there (model.pickle or mo
 
 
 Have fun!!!
+
+
+## TODO
+- to include functions for:
+
+        - multiple model training
+        - selection of best model by a metric
+        - hyperparameter tuning (bayesian optimization)
+
+- to include incremental learning
